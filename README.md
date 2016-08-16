@@ -4,7 +4,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/laravel-notification-channels/evernote/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/evernote)
 [![StyleCI](https://styleci.io/repos/65846966/shield)](https://styleci.io/repos/65846966)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/262c4806-f5de-473a-99ca-8d86a96dcfba.svg?style=flat-square)](https://insight.sensiolabs.com/projects/262c4806-f5de-473a-99ca-8d86a96dcfba)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/9b44f24e-c7aa-4e6f-b584-6851a41b2a1a.svg?style=flat-square)](https://insight.sensiolabs.com/projects/9b44f24e-c7aa-4e6f-b584-6851a41b2a1a)
 [![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/evernote.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/evernote)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/evernote/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/evernote/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/evernote.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/evernote)
