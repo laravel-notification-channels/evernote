@@ -2,10 +2,6 @@
 
 namespace NotificationChannels\Evernote;
 
-use DateTime;
-use DateTimeZone;
-use NotificationChannels\Evernote\Exceptions\CouldNotCreateMessage;
-
 class EvernoteContent
 {
     const TYPE_HTML = 'html';
@@ -16,7 +12,6 @@ class EvernoteContent
 
     /** @var array */
     protected $type = self::TYPE_PLAIN;
-
 
     /**
      * @param string $content

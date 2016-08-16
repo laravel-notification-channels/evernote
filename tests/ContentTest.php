@@ -54,5 +54,4 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals('plain', Arr::get($this->content->toArray(), 'type'));
     }
-
 }
