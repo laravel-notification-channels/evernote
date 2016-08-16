@@ -5,6 +5,7 @@ namespace NotificationChannels\Evernote\Test;
 use Evernote\Client;
 use Illuminate\Notifications\Notification;
 use Mockery;
+use NotificationChannels\Evernote\EvernoteContent;
 use NotificationChannels\Evernote\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Evernote\EvernoteChannel;
 use NotificationChannels\Evernote\EvernoteMessage;
@@ -74,6 +75,9 @@ class TestNotification extends Notification
 {
     public function toEvernote($notifiable)
     {
-        return EvernoteMessage::create('EvernoteMessage');
+        return EvernoteMessage::create('EvernoteMessage')
+            ->content(EvernoteContent::create('EvernoteContent'))
+            ->done()
+            ->reminder('tomorrow');
     }
 }
