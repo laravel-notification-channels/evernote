@@ -5,7 +5,6 @@ namespace NotificationChannels\Evernote\Test;
 use DateTime;
 use Illuminate\Support\Arr;
 use NotificationChannels\Evernote\EvernoteContent;
-use NotificationChannels\Evernote\Exceptions\CouldNotCreateMessage;
 use NotificationChannels\Evernote\EvernoteMessage;
 
 class MessageTest extends \PHPUnit_Framework_TestCase

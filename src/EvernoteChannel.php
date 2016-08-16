@@ -13,7 +13,6 @@ use Illuminate\Notifications\Notification;
 
 class EvernoteChannel
 {
-
     /** @var Client */
     protected $client;
 
