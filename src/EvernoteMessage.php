@@ -3,8 +3,6 @@
 namespace NotificationChannels\Evernote;
 
 use DateTime;
-use DateTimeZone;
-use NotificationChannels\Evernote\Exceptions\CouldNotCreateMessage;
 
 class EvernoteMessage
 {
