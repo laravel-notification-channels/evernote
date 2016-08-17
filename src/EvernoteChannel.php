@@ -34,7 +34,7 @@ class EvernoteChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$token = $notifiable->routeNotificationFor('Evernote')) {
+        if (! $token = $notifiable->routeNotificationFor('Evernote')) {
             return;
         }
 
@@ -52,7 +52,6 @@ class EvernoteChannel
             throw CouldNotSendNotification::serviceRespondedWithAnError($exception->getMessage());
         }
     }
-
 
     /**
      * @param array $message
@@ -80,25 +79,24 @@ class EvernoteChannel
         return $note;
     }
 
-
     /**
      * @param $message
      * @return \Evernote\Model\HtmlNoteContent|\Evernote\Model\PlainTextNoteContent|null
      */
     protected function getContent($message)
     {
-        if (!is_null($message['content'])) {
-            return null;
+        if (! is_null($message['content'])) {
+            return;
         }
 
         if (Arr::get($message, 'content.type') === EvernoteContent::TYPE_HTML) {
             $content = new HtmlNoteContent(Arr::get($message, 'content.content'));
+
             return $content;
         }
 
         $content = new PlainTextNoteContent(Arr::get($message, 'content.content'));
 
         return $content;
-
     }
 }
