@@ -8,6 +8,7 @@ class CouldNotSendNotification extends Exception
 {
     /**
      * @param string $errorMessage
+     *
      * @return static
      */
     public static function serviceRespondedWithAnError($errorMessage)
