@@ -81,6 +81,7 @@ class EvernoteChannel
 
     /**
      * @param $message
+     *
      * @return \Evernote\Model\HtmlNoteContent|\Evernote\Model\PlainTextNoteContent|null
      */
     protected function getContent($message)
