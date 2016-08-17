@@ -2,10 +2,16 @@
 
 namespace NotificationChannels\Evernote\Exceptions;
 
-class CouldNotSendNotification extends \Exception
+use Exception;
+
+class CouldNotSendNotification extends Exception
 {
-    public static function serviceRespondedWithAnError($error)
+    /**
+     * @param string $errorMessage
+     * @return static
+     */
+    public static function serviceRespondedWithAnError($errorMessage)
     {
-        return new static('Evernote responded with an error: `'.$error.'`');
+        return new static("Evernote responded with an error: `{$errorMessage}`");
     }
 }

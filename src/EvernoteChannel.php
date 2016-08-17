@@ -34,7 +34,7 @@ class EvernoteChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $token = $notifiable->routeNotificationFor('Evernote')) {
+        if (!$token = $notifiable->routeNotificationFor('Evernote')) {
             return;
         }
 
@@ -42,33 +42,63 @@ class EvernoteChannel
 
         $message = $notification->toEvernote($notifiable)->toArray();
 
-        $this->client->setSandbox(Arr::get($message, 'sandbox', false));
+        $this->client->setSandbox($message['sandbox'] ?: false);
 
+        $note = $this->convertMessageToNote($message);
+
+        try {
+            $this->client->uploadNote($note);
+        } catch (Exception $exception) {
+            throw CouldNotSendNotification::serviceRespondedWithAnError($exception->getMessage());
+        }
+    }
+
+
+    /**
+     * @param array $message
+     *
+     * @return \Evernote\Model\Note
+     */
+    protected function convertMessageToNote($message)
+    {
         $note = new Note();
+
         $note->setTitle($message['title']);
 
-        if (! is_null($message['content'])) {
-            if (Arr::get($message, 'content.type') === EvernoteContent::TYPE_HTML) {
-                $content = new HtmlNoteContent(Arr::get($message, 'content.content'));
-            } else {
-                $content = new PlainTextNoteContent(Arr::get($message, 'content.content'));
-            }
+        if ($content = $this->getContent($message)) {
             $note->setContent($content);
         }
+
         $note->setTagNames($message['tags']);
 
         if ($message['done'] === true) {
             $note->setAsDone();
         }
 
-        if (! is_null(Arr::get($message, 'reminder'))) {
-            $note->setReminder($message['reminder']);
+        $note->setReminder($message['reminder'] ?: false);
+
+        return $note;
+    }
+
+
+    /**
+     * @param $message
+     * @return \Evernote\Model\HtmlNoteContent|\Evernote\Model\PlainTextNoteContent|null
+     */
+    protected function getContent($message)
+    {
+        if (!is_null($message['content'])) {
+            return null;
         }
 
-        try {
-            $this->client->uploadNote($note);
-        } catch (Exception $e) {
-            throw CouldNotSendNotification::serviceRespondedWithAnError($e->getMessage());
+        if (Arr::get($message, 'content.type') === EvernoteContent::TYPE_HTML) {
+            $content = new HtmlNoteContent(Arr::get($message, 'content.content'));
+            return $content;
         }
+
+        $content = new PlainTextNoteContent(Arr::get($message, 'content.content'));
+
+        return $content;
+
     }
 }
